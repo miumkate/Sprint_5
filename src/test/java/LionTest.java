@@ -7,9 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Collections;
-
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -61,7 +59,8 @@ public class LionTest {
     @Test
     public void getFoodForLionTest() throws Exception {
         lion = new Lion("Самец", feline);
-        Mockito.when(feline.getFood("Хищник")).thenReturn(Collections.singletonList("Животные, Птицы, Рыбы"));
-        assertEquals("[Животные, Птицы, Рыбы]",lion.getFood().toString(),"Ожидается еда для хищника");
+        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные, Птицы, Рыбы"));
+        List<String> expected = List.of("Животные, Птицы, Рыбы");
+        assertEquals(expected,lion.getFood(),"Ожидается еда для хищника");
     }
 }

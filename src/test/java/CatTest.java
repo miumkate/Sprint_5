@@ -5,8 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,7 +23,7 @@ public class CatTest {
     }
 
     @Test
-    public void SoundTest(){
+    public void soundTest(){
         cat = new Cat(feline);
         assertEquals("Мяу", cat.getSound(),"Ожидается Мяу");
     }
@@ -32,7 +31,8 @@ public class CatTest {
     @Test
     public void getFoodTest() throws Exception {
         cat = new Cat(feline);
-        Mockito.when(feline.eatMeat()).thenReturn(Collections.singletonList("Хищник"));
-        assertEquals("[Хищник]",cat.getFood().toString(),"Ожидается Хищник");
+        Mockito.when(feline.eatMeat()).thenReturn(List.of("Хищник"));
+        List<String> expected = List.of("Хищник");
+        assertEquals(expected,cat.getFood(),"Ожидается Хищник");
     }
 }

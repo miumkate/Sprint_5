@@ -3,6 +3,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FelineTest {
@@ -15,7 +17,9 @@ public class FelineTest {
 
     @Test
     public void eatMeatTest() throws Exception {
-        assertEquals("[Животные, Птицы, Рыбы]",feline.eatMeat().toString(),"Ожидается пища для хищника.");
+        List<String> expected = List.of("Животные", "Птицы", "Рыбы");
+        List<String> result = feline.eatMeat();
+        assertEquals(expected,result,"Ожидается пища для хищника.");
     }
 
     @Test

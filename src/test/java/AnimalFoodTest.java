@@ -3,6 +3,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.Arrays;
+import java.util.List;
+
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AnimalFoodTest {
@@ -14,12 +19,19 @@ public class AnimalFoodTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"Хищник, '[Животные, Птицы, Рыбы]'", "Травоядное, '[Трава, Различные растения]'"})
+    @CsvSource({"Хищник, 'Животные,Птицы,Рыбы'", "Травоядное, 'Трава,Различные растения'"})
     void testGetFoodPredator(String type, String food) throws Exception {
-        assertEquals(food,
-                animal.getFood(type).toString(),
+        List<String> listFood = Arrays.asList(food.split(","));
+        System.out.println(listFood);
+        List<String> result = animal.getFood(type);
+
+
+        assertEquals(listFood,
+               result,
                 "Ожидается соответствие пищи виду животного"
         );
+
+
     }
 
     @Test
